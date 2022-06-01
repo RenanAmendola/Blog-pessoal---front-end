@@ -1,0 +1,9 @@
+#img-bg{
+    background-image: url('https://dontgetserious.com/wp-content/uploads/2022/01/Wait-A-Minute-Memes.jpeg');
+
+    min-height: 727pt;
+
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
