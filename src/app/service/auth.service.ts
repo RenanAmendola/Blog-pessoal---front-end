@@ -15,12 +15,12 @@ export class AuthService {
 
   ) { }
 
-entrar(userlogin: usuarioLogin): Observable<usuarioLogin>{
-  return this.http.post<usuarioLogin>('http://localhost:8080/usuarios/logar', userlogin)
+entrar(usuariorLogin: usuarioLogin): Observable<usuarioLogin>{
+  return this.http.post<usuarioLogin>('https://bprenan.herokuapp.com/usuarios/logar', usuariorLogin)
 }
 
 cadastrar(usuario: usuario): Observable<usuario>{
-  return this.http.post<usuario>('http://localhost:8080/usuarios/cadastrar', usuario)
+  return this.http.post<usuario>('https://bprenan.herokuapp.com/usuarios/cadastrar', usuario)
 }
 
 
