@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.prod';
 import { tema } from '../model/tema';
 import { TemaService } from '../service/tema.service';
@@ -43,5 +44,14 @@ export class TemaComponent implements OnInit {
       this.tema = new tema()
     })
   }
+
+
+
+
+
+
+
+
+
 
 }
