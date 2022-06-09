@@ -24,6 +24,10 @@ cadastrar(usuario: usuario): Observable<usuario>{
   return this.http.post<usuario>('https://bprenan.herokuapp.com/usuarios/cadastrar', usuario)
 }
 
+atualizar(usuario: usuario){
+  return this.http.put<usuario>('https://bprenan.herokuapp.com/usuarios/atualizar', usuario, this.token)
+}
+
 getByIdUsuario(id: number): Observable<usuario>{
   return this.http.get<usuario>(`https://bprenan.herokuapp.com/usuarios/${id}`, this.token)
 }
