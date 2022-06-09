@@ -37,25 +37,65 @@
         <div class="nav nav-tabs d-flex justify-content-center " id="nav-tab" role="tablist">
           <a class="nav-link active text-info font-weight-bold" id="nav-todasPostagens-tab" data-toggle="tab" href="#todasPostagens" role="tab" aria-controls="todasPostagens" aria-selected="true">Todas as postagens</a>
 
-          <a class="nav-link text-info font-weight-bold" id="nav-minhasPostagens-tab" data-toggle="tab" href="#minhasPostagens" role="tab" aria-controls="minhasPostagens" aria-selected="false">Minhas postagens</a>
+          <a (click)="findByIdUsuario()" class="nav-link text-info font-weight-bold" id="nav-minhasPostagens-tab" data-toggle="tab" href="#minhasPostagens" role="tab" aria-controls="minhasPostagens" aria-selected="false">Minhas postagens</a>
 
-          <a class="nav-link text-info font-weight-bold" id="nav-postagensTema-tab" data-toggle="tab" href="#postagensTema" role="tab" aria-controls="postagensTema" aria-selected="false">Postagens por tema</a>
+          <a (click)="findByIdTema()" class="nav-link text-info font-weight-bold" id="nav-postagensTema-tab" data-toggle="tab" href="#postagensTema" role="tab" aria-controls="postagensTema" aria-selected="false">Postagens por tema</a>
 
         </div>
       </nav>
-      <div class="tab-content" id="nav-tabContent">
+      <div class="tab-content mt-5" id="nav-tabContent">
 
+        <!-- Todas as postagens -->
         <div class="tab-pane fade show active" id="todasPostagens" role="tabpanel" aria-labelledby="nav-todasPostagens-tab">
-            Todas as Postagens
+           
+          <div class="card mb-3" *ngFor="let item of listaPostagem">
+            <img src="{{item.foto}}" class="card-img-top" alt="foto da postagem">
+            <div class="card-body" >
+              <h5 class="card-title">{{item.titulo}}</h5>
+              <p class="card-text">{{item.texto}}</p>
+              <p class="card-text"><small class="text-muted">Publicado em: {{item.data | date: 'dd/MM/yyyy'}} as {{item.data | date: 'HH:mm'}}</small></p>
+              <p class="card-text"><small class="text-muted">Tema: {{item.tema.descricao}}</small></p>
+              <p class="card-text text-right"><small class="text-muted">By: {{item.usuario.nome}}</small></p>
+            </div>
+          </div>
+         
         </div>
+         <!-- Todas as postagens -->
 
+        <!-- Todas as suas postagens -->
         <div class="tab-pane fade" id="minhasPostagens" role="tabpanel" aria-labelledby="nav-minhasPostagens-tab">
-            Minhas postagens
+           
+          <div class="card mb-3" *ngFor="let item of usuario.postagem">
+            <img src="{{item.foto}}" class="card-img-top" alt="foto da postagem">
+            <div class="card-body" >
+              <h5 class="card-title">{{item.titulo}}</h5>
+              <p class="card-text">{{item.texto}}</p>
+              <p class="card-text"><small class="text-muted">Publicado em: {{item.data | date: 'dd/MM/yyyy'}} as {{item.data | date: 'HH:mm'}}</small></p>
+              <p class="card-text"><small class="text-muted">Tema: {{item.tema.descricao}}</small></p>
+            </div>
+          </div>
+
+        </div>
+        <!-- Todas as suas postagens -->
+
+        <!-- postagens por tema -->
+        <div class="tab-pane fade" id="postagensTema" role="tabpanel" aria-labelledby="nav-postagensTema-tab">
+
+          <div *ngFor="let tema of listaTemas">
+          <div class="card mb-3" *ngFor="let item of tema.postagem">
+            <img src="{{item.foto}}" class="card-img-top" alt="foto da postagem">
+            <div class="card-body" >
+              <h5 class="card-title">{{item.titulo}}</h5>
+              <p class="card-text">{{item.texto}}</p>
+              <p class="card-text"><small class="text-muted">Publicado em: {{item.data | date: 'dd/MM/yyyy'}} as {{item.data | date: 'HH:mm'}}</small></p>
+              <p class="card-text text-right"><small class="text-muted">By: {{item.usuario.nome}}</small></p>
+            </div>
+          </div>
         </div>
 
-        <div class="tab-pane fade" id="postagensTema" role="tabpanel" aria-labelledby="nav-postagensTema-tab">
-            Postagens por tema
         </div>
+        <!-- postagens por tema -->
+
       </div>
 
 </div>
@@ -94,9 +134,14 @@
             </select>
           </div>
 
+          <div class="form-grup">
+            <label for="foto">Coloque foto</label>
+            <input [(ngModel)]="postagem.foto" type="foto" class="form-control" id="foto" placeholder="url aqui">
+          </div>
+
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-danger bd-3" data-dismiss="modal">Cancelar</button>
           <button type="button" class="btn btn-success" (click)="publicar()" data-dismiss="modal">Publicar</button>
         </div>
       </div>
